@@ -14,6 +14,7 @@ function Index(props: IndexProps) {
     <div>
       <h1>My Todo List</h1>
       <h2>Click on Todo to see it individually</h2>
+      <Link href="/todos/create"><button>Create a New Todo</button></Link>
       {/* MAPPING OVER TODOS */}
       {todos.map(t=>(
         <div key={t._id}>
@@ -29,7 +30,7 @@ function Index(props: IndexProps) {
 }
 
 // GET PROPS FOR SERVER SIDE RENDERING
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
   // get todo data from API
   const res = await fetch(process.env.API_URL as string)
   const todos = await res.json()
